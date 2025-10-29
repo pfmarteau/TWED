@@ -11,9 +11,10 @@ if __name__ == '__main__':
     tC=np.array(list(i for i in range(len(C))))
     nu=.1
     _lambda=.2
-    print("twed(A,B,nu,lambda)=", TWED.distance(A,tA,B,tB,nu,_lambda))
-    print("twed(A,C,nu,lambda)=", TWED.distance(A,tA,C,tC,nu,_lambda))
-    print("twed(B,C,nu,lambda)=", TWED.distance(B,tB,C,tC,nu,_lambda))
+    degree=1
+    print("twed(A,B,nu,lambda)=", TWED.distance(A, tA, B, tB, nu, _lambda, degree))
+    print("twed(A,C,nu,lambda)=", TWED.distance(A, tA, C, tC, nu, _lambda, degree))
+    print("twed(B,C,nu,lambda)=", TWED.distance(B, tB, C, tC, nu, _lambda, degree))
         
     plt.plot(A, label='A')
     plt.plot(B, label='B')
