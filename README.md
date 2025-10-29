@@ -6,7 +6,11 @@ The Time Warp Edit Distance (TWED) is a distance measure for discrete time serie
 **TWED_c** directory contains a C biding of TWED, nearly two order of magnitude faster that **twed.py** implementation.
 To install the C version, correct accordingly to your OS and python installation, the paths for including **Python.h** and **arrayobject.h** in **TWED.C**, then execute inside **TWED_c** subdirectory:
 
-$ python3 setup.py install --user
+$ sudo apt update
+$ sudo apt install python3-numpy-dev
+
+Then install the package itself:
+$ python3 -m pip install . --break-system-packages
 
 and to test:
 $ python3 test.py
