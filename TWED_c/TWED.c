@@ -1,3 +1,4 @@
+
 /*  Wrapping KDTW similarity function with the Python-C-API. */
 
 // YOU ARE POSSIBLY NEEDED TO CORRECT THE PATHS TO NUMPY HEADERS TO INCLUDE Python.h and arrayobject.h AS I DID BELOW
@@ -54,28 +55,26 @@ double CTWED(double **ta, int la, double *tsa, double **tb, int lb, double *tsb,
 	// local costs initializations
 	for(j=1; j<=c; j++) {
   		distj1=0;
-		if(j>1){
-			distj1+=powMinkowski(tb[j-2],tb[j-1],dim,deg);	
-		}
-		else distj1+=powMinkowskiZ(tb[j-1],dim,deg);
-   		
+		if(j>1)
+		    distj1+=powMinkowski(tb[j-2],tb[j-1],dim,deg);
+		else 
+		    distj1+=powMinkowskiZ(tb[j-1],dim,deg);
 		Dj1[j]=distj1;
 	}
 	
 	for(i=1; i<=r; i++) { 
    		disti1=0;
 		if(i>1)
-			disti1+=powMinkowski(ta[i-2],ta[i-1],dim,deg);
-		else disti1+=powMinkowskiZ(ta[i-1],dim,deg);
+		    disti1+=powMinkowski(ta[i-2],ta[i-1],dim,deg);
+		else 
+		    disti1+=powMinkowskiZ(ta[i-1],dim,deg);
 
   		Di1[i]=disti1;
   
   		for(j=1; j<=c; j++) {
-  			(dist)=0;
-			(dist)+=powMinkowski(ta[i-1],tb[j-1],dim,deg);	
+			dist = powMinkowski(ta[i-1],tb[j-1],dim,deg);	
 			if(i>1&&j>1)
-				(dist)+=powMinkowski(ta[i-2],tb[j-2],dim,deg);
-
+		           dist += powMinkowski(ta[i-2],tb[j-2],dim,deg);
     			D[i][j]=dist;
   		}
 	}// for i
@@ -186,7 +185,7 @@ static PyObject* distance(PyObject* self, PyObject* args)
     double nu, lambda;
     PyArrayObject *seq1, *tseq1, *seq2, *tseq2;
     
-    if (!PyArg_ParseTuple(args, "OOOOdd",  &seq1,  & tseq1, &seq2, &tseq2, &nu, &lambda))
+    if (!PyArg_ParseTuple(args, "OOOOdd",  &seq1,  & tseq1, &seq2, &tseq2, &nu, &lambda, &degree))
         return failure(-1, "TPyArg_ParseTuple error.");
 
     if (PyArray_DESCR(seq1)->type_num != NPY_DOUBLE)
